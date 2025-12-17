@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1049841474052",
+    "project_id": "fluformapp-838fa",
+    "storage_bucket": "fluformapp-838fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049841474052:android:c848e883fc48515e1b3351",
+        "android_client_info": {
+          "package_name": "com.companyname.fluformapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2gGU9EU6WBacpNHsYDJRsFvLusPViJSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

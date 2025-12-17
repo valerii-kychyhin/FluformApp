@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FluformApp.Views.Workflow.WorkflowPage"
+    BackgroundColor="#FBFCFD"
+    Shell.NavBarIsVisible="False"
+    NavigationPage.HasNavigationBar="False">
+
+    <!-- CollectionView скроллит всю страницу -->
+    <CollectionView ItemsSource="{Binding Workflows}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    SelectionMode="None">
+
+        <!-- Header с логотипом и кнопкой -->
+        <CollectionView.Header>
+            <VerticalStackLayout Spacing="20" Padding="0" HorizontalOptions="Center">
+
+                <!-- Верхнее поле с логотипом -->
+                <Frame HasShadow="False"
+                       CornerRadius="16"
+                       HeightRequest="115"
+                       WidthRequest="490"
+                       BackgroundColor="#2a3166"
+                       Padding="2,0"
+                       HorizontalOptions="Center">
+                    <HorizontalStackLayout Spacing="13" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="app_logo.png" HeightRequest="115" WidthRequest="390"/>
+                        <Image Source="fluform.png" HeightRequest="40" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Белая карточка с заголовком и кнопкой -->
+                <Frame HasShadow="False"
+                       CornerRadius="16"
+                       BackgroundColor="White"
+                       Margin="0,-30,0,0"
+                       Padding="20"
+                       HorizontalOptions="FillAndExpand">
+
+                    <VerticalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
+                        <Label Text="Workflows"
+                               HorizontalOptions="Center"
+                               FontFamily="InterSemiBold"
+                               FontSize="20"
+                               TextColor="#3E3D3D"/>
+
+                        <Button Text="Create Test Workflow"
+                                Command="{Binding CreateTestWorkflowCommand}"
+                                FontFamily="InterSemiBold"
+                                FontSize="14"
+                                HeightRequest="50"
+                                BackgroundColor="#5C74E0"
+                                TextColor="White"
+                                CornerRadius="6"
+                                HorizontalOptions="FillAndExpand"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </CollectionView.Header>
+
+        <!-- ItemTemplate для workflow -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Margin="6" Padding="10" CornerRadius="8" HasShadow="True" BackgroundColor="#F5F5F5">
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="FillAndExpand">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="{Binding Description}" FontSize="14"/>
+                        <Label Text="{Binding Status}" FontAttributes="Italic" TextColor="Green"/>
+                        <Label Text="Author: {Binding Created.Author.Name}" FontSize="12" TextColor="Gray"/>
+                        <Label Text="Created: {Binding Created.CreatedAt}" FontSize="12" TextColor="Gray"/>
+
+                        <!-- Вложенные Steps -->
+                        <CollectionView ItemsSource="{Binding Steps}" SelectionMode="None" Margin="0,6,0,0">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Margin="2,2" Padding="6" CornerRadius="6" BackgroundColor="White" HasShadow="False">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="14"/>
+                                            <Label Text="{Binding Description}" FontSize="12" TextColor="Gray"/>
+                                            <Label Text="Тип: {Binding Type}" FontSize="12" TextColor="DarkGray"/>
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+</ContentPage>
+
+
+
