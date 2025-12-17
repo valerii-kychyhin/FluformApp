@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FluformApp.Views.Workflow.WorkflowPage"
+    BackgroundColor="#FBFCFD"
+    Shell.NavBarIsVisible="False"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="0" HorizontalOptions="Center">
+
+            <!-- Верхнее поле с логотипом и названием -->
+            <Frame HasShadow="False"
+                   CornerRadius="16"
+                   HeightRequest="115"
+                   WidthRequest="490"
+                   BackgroundColor="#2a3166"
+                   Padding="2,0"
+                   HorizontalOptions="Center">
+                <HorizontalStackLayout Spacing="13" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="app_logo.png" HeightRequest="115" WidthRequest="390"/>
+                    <Image Source="fluform.png" HeightRequest="40" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Основная белая карточка -->
+            <Frame HasShadow="False"
+                   CornerRadius="16"
+                   BackgroundColor="White"
+                   Margin="0,-30,0,0"
+                   Padding="20"
+                   HorizontalOptions="FillAndExpand">
+
+                <VerticalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
+
+                    <!-- Заголовок страницы -->
+                    <Label Text="Workflows"
+                           HorizontalOptions="Center"
+                           FontFamily="InterSemiBold"
+                           FontSize="20"
+                           TextColor="#3E3D3D"/>
+
+                    <!-- Кнопка создания тестового workflow -->
+                    <Button Text="Create Test Workflow"
+                            Command="{Binding CreateTestWorkflowCommand}"
+                            FontFamily="InterSemiBold"
+                            FontSize="14"
+                            HeightRequest="50"
+                            BackgroundColor="#5C74E0"
+                            TextColor="White"
+                            CornerRadius="6"
+                            HorizontalOptions="FillAndExpand"/>
+
+                    <!-- Pull-to-refresh и список workflow -->
+                    <RefreshView Command="{Binding LoadUserWorkflowsCommand}"
+                                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                                 HorizontalOptions="FillAndExpand">
+
+                        <CollectionView ItemsSource="{Binding Workflows}" HorizontalOptions="FillAndExpand">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Margin="6" Padding="10" CornerRadius="8" HasShadow="True" BackgroundColor="#F5F5F5">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18"/>
+                                            <Label Text="{Binding Description}" FontSize="14" LineBreakMode="TailTruncation"/>
+                                            <Label Text="{Binding Status}" FontAttributes="Italic" TextColor="Green"/>
+                                            <Label Text="{Binding Created.Author.Name}" FontSize="12" TextColor="Gray"/>
+                                            <Label Text="{Binding Created.CreatedAt}" FontSize="12" TextColor="Gray"/>
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </RefreshView>
+
+                    <!-- Loader -->
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

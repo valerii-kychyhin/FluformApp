@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FluformApp.Views.Profile.ProfilePage"
+             BackgroundColor="#FBFCFD"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="0" HorizontalOptions="Center">
+
+            <!-- Верхнее поле с логотипом и названием -->
+            <Frame HasShadow="False"
+                   CornerRadius="16"
+                   HeightRequest="115"
+                   WidthRequest="490"
+                   BackgroundColor="#2a3166"
+                   Padding="2,0"
+                   HorizontalOptions="Center">
+                <HorizontalStackLayout Spacing="13" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="app_logo.png" HeightRequest="115" WidthRequest="390"/>
+                    <Image Source="fluform.png" HeightRequest="40" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Белая карточка с профилем -->
+            <Frame HasShadow="False"
+                   CornerRadius="16"
+                   BackgroundColor="White"
+                   Margin="0,-30,0,0"
+                   Padding="20"
+                   HorizontalOptions="FillAndExpand">
+
+                <VerticalStackLayout Spacing="20" HorizontalOptions="FillAndExpand">
+
+                    <Label Text="Profile"
+                           HorizontalOptions="Center"
+                           FontFamily="InterSemiBold"
+                           FontSize="20"
+                           TextColor="#3E3D3D"/>
+
+                    <!-- First Name -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="First Name" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding Name}" Placeholder="First Name"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   PlaceholderColor="#94A1B2"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Last Name -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Last Name" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding Surname}" Placeholder="Last Name"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   PlaceholderColor="#94A1B2"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Email -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Email" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding Email}" IsEnabled="False"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Email Verified -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Email Verified" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding EmailVerified}" IsEnabled="False"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Social Login Type -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Social Login Type" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding SocialLoginType}" IsEnabled="False"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Created At -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Created At" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding CreatedAt}" IsEnabled="False"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Updated At -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Updated At" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding UpdatedAt}" IsEnabled="False"
+                                   FontFamily="InterMedium"
+                                   FontSize="13"
+                                   TextColor="#3E3D3D"
+                                   Margin="12,0"
+                                   HeightRequest="50"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Buttons -->
+                    <VerticalStackLayout Spacing="12" HorizontalOptions="FillAndExpand">
+
+                        <Button Text="Save"
+                                Command="{Binding UpdateProfileCommand}"
+                                FontFamily="InterSemiBold"
+                                FontSize="14"
+                                HeightRequest="50"
+                                BackgroundColor="#5C74E0"
+                                TextColor="White"
+                                CornerRadius="6"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <Button Text="Logout"
+                                Command="{Binding LogoutCommand}"
+                                FontFamily="InterSemiBold"
+                                FontSize="14"
+                                HeightRequest="50"
+                                BackgroundColor="Tomato"
+                                TextColor="White"
+                                CornerRadius="6"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <Button Text="Notifications"
+                                Command="{Binding OpenNotificationsCommand}"
+                                FontFamily="InterSemiBold"
+                                FontSize="14"
+                                HeightRequest="50"
+                                BackgroundColor="#eeeeee"
+                                TextColor="Black"
+                                CornerRadius="6"
+                                HorizontalOptions="FillAndExpand"/>
+
+                        <Button Text="Workflows"
+                                Command="{Binding OpenWorkflowsCommand}"
+                                FontFamily="InterSemiBold"
+                                FontSize="14"
+                                HeightRequest="50"
+                                BackgroundColor="#eeeeee"
+                                TextColor="Black"
+                                CornerRadius="6"
+                                HorizontalOptions="FillAndExpand"/>
+                    </VerticalStackLayout>
+
+                    <!-- Loader -->
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                       IsVisible="{Binding IsBusy}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
