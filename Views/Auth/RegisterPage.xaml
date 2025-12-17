@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FluformApp.Converters"
+             x:Class="FluformApp.Views.Auth.RegisterPage"
+             BackgroundColor="#2A3465"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <!-- Converters -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToEyeIconConverter x:Key="BoolToEyeIconConverter"/>
+            <local:BoolToCheckCrossIconConverter x:Key="BoolToCheckCrossIconConverter"/>
+            <local:BoolToButtonColorConverter x:Key="BoolToButtonColorConverter"/>
+            <local:StrengthToColorConverter x:Key="Strength1" Segment="1"/>
+            <local:StrengthToColorConverter x:Key="Strength2" Segment="2"/>
+            <local:StrengthToColorConverter x:Key="Strength3" Segment="3"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid RowDefinitions="140,*">
+
+            <!-- Верхний фон с логотипом -->
+            <Grid Grid.Row="0"
+                  BackgroundColor="#2A3465"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Fill">
+                <Image Source="app_logo.png"
+                       HeightRequest="115"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Белая карточка -->
+            <Frame Grid.Row="1"
+                   Margin="16,-30,16,16"
+                   Padding="20"
+                   CornerRadius="16"
+                   HasShadow="False"
+                   BackgroundColor="White"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Start">
+                <!-- ключевое изменение -->
+
+                <VerticalStackLayout Spacing="20"
+                                     HorizontalOptions="Fill">
+
+                    <!-- Title -->
+                    <Label Text="Sign Up"
+                           HorizontalOptions="Center"
+                           FontFamily="InterSemiBold"
+                           FontSize="20"
+                           TextColor="#3E3D3D"/>
+
+                    <!-- Google Login -->
+                    <Frame HasShadow="False"
+                           BorderColor="#F0F2F6"
+                           BackgroundColor="White"
+                           Padding="0"
+                           HeightRequest="50"
+                           HorizontalOptions="Fill">
+                        <HorizontalStackLayout Spacing="8"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center">
+                            <Image Source="google_logo.png"
+                                   HeightRequest="18"
+                                   WidthRequest="18"/>
+                            <Label Text="Sign in with Google"
+                                   FontFamily="UrbanistSemiBold"
+                                   FontSize="13"
+                                   TextColor="#3E3D3D"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <!-- OR -->
+                    <Grid HeightRequest="20"
+                          HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Column="0"
+                                 HeightRequest="1"
+                                 VerticalOptions="Center"
+                                 BackgroundColor="#F0F2F6"
+                                 Margin="0,0,8,0"/>
+                        <Label Grid.Column="1"
+                               Text="or"
+                               FontFamily="InterMedium"
+                               FontSize="14"
+                               TextColor="#94A1B2"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                        <BoxView Grid.Column="2"
+                                 HeightRequest="1"
+                                 VerticalOptions="Center"
+                                 BackgroundColor="#F0F2F6"
+                                 Margin="8,0,0,0"/>
+                    </Grid>
+
+                    <!-- First Name -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="First name *" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding FirstName}" Placeholder="First name" HeightRequest="50" Margin="12,0"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Last Name -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Last name *" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding LastName}" Placeholder="Last name" HeightRequest="50" Margin="12,0"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Email -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Email *" TextColor="#3E3D3D"/>
+                        <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="email@example.com" HeightRequest="50" Margin="12,0"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Password -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Password *" TextColor="#3E3D3D"/>
+                        <Grid>
+                            <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="6"/>
+                                </Border.StrokeShape>
+                                <Entry Text="{Binding Password}" 
+                                       IsPassword="{Binding IsPasswordHidden}" 
+                                       HeightRequest="50" 
+                                       Margin="12,0"/>
+                            </Border>
+                            <ImageButton Source="{Binding IsPasswordHidden, Converter={StaticResource BoolToEyeIconConverter}}" 
+                                         Command="{Binding TogglePasswordVisibilityCommand}"
+                                         BackgroundColor="Transparent"
+                                         HeightRequest="20" WidthRequest="20"
+                                         HorizontalOptions="End" VerticalOptions="Center"
+                                         Margin="0,0,12,0"/>
+                        </Grid>
+
+                        <!-- Strength bar -->
+                        <Grid ColumnDefinitions="*,*,*" HeightRequest="6" Margin="0,4,0,0">
+                            <BoxView Grid.Column="0" Color="{Binding PasswordStrength, Converter={StaticResource Strength1}}"/>
+                            <BoxView Grid.Column="1" Margin="4,0" Color="{Binding PasswordStrength, Converter={StaticResource Strength2}}"/>
+                            <BoxView Grid.Column="2" Color="{Binding PasswordStrength, Converter={StaticResource Strength3}}"/>
+                        </Grid>
+
+                        <!-- Requirements -->
+                        <VerticalStackLayout Spacing="6" Margin="0,6,0,0">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image HeightRequest="16" WidthRequest="16" Source="{Binding HasMinLength, Converter={StaticResource BoolToCheckCrossIconConverter}}"/>
+                                <Label Text="At least 8 characters" FontSize="12" TextColor="#3E3D3D"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="8">
+                                <Image HeightRequest="16" WidthRequest="16" Source="{Binding HasTwoDigits, Converter={StaticResource BoolToCheckCrossIconConverter}}"/>
+                                <Label Text="At least 2 digits" FontSize="12" TextColor="#3E3D3D"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+
+                    <!-- Confirm Password -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label FontFamily="InterMedium" FontSize="13" Text="Confirm password *" TextColor="#3E3D3D"/>
+                        <Grid>
+                            <Border Stroke="#F2F2F6" StrokeThickness="1" BackgroundColor="White">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="6"/>
+                                </Border.StrokeShape>
+                                <Entry Text="{Binding PasswordConfirmation}" 
+                                       IsPassword="{Binding IsConfirmPasswordHidden}" 
+                                       HeightRequest="50" Margin="12,0"/>
+                            </Border>
+                            <ImageButton Source="{Binding IsConfirmPasswordHidden, Converter={StaticResource BoolToEyeIconConverter}}" 
+                                         Command="{Binding ToggleConfirmPasswordVisibilityCommand}"
+                                         BackgroundColor="Transparent"
+                                         HeightRequest="20" WidthRequest="20"
+                                         HorizontalOptions="End" VerticalOptions="Center"
+                                         Margin="0,0,12,0"/>
+                        </Grid>
+                    </VerticalStackLayout>
+
+                    <!-- Register Button -->
+                    <Button Text="Sign Up"
+                            Command="{Binding RegisterCommand}"
+                            IsEnabled="{Binding CanRegister}"
+                            BackgroundColor="{Binding CanRegister, Converter={StaticResource BoolToButtonColorConverter}}"
+                            FontFamily="InterSemiBold"
+                            HeightRequest="50"
+                            TextColor="White"
+                            CornerRadius="6"/>
+
+                    <!-- Footer -->
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                        <Label Text="Already have an account?" FontSize="13" TextColor="#3E3D3D"/>
+                        <Label Text="Sign In" FontSize="13" TextColor="#5C74E0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CancelCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+
+                    <!-- Loader -->
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
